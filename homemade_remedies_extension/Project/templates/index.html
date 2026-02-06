@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!-- 🌐 Language Buttons -->
+<div id="language-buttons" style="text-align:right; margin-bottom: 15px;">
+    <button onclick="setLanguage('en')">English</button>
+    <button onclick="setLanguage('hi')">हिन्दी</button>
+    <button onclick="setLanguage('te')">తెలుగు</button>
+</div>
+
+<div class="dashboard-container">
+    <div class="welcome-header">
+        <h1 id="title">Welcome, {{ user.name }}!</h1>
+        <p id="dashboard_intro">Your Personal Health Dashboard</p>
+    </div>
+
+    <div class="health-profile card">
+        <h2 id="health_profile">Your Health Profile</h2>
+        <p><strong id="condition_label">Condition:</strong> {{ user.health_condition }}</p>
+        <p><strong id="details_label">Details:</strong> {{ user.health_details }}</p>
+    </div>
+
+    <div class="recommendations">
+        {% if recommendations.diet %}
+        <div class="recommendation-card">
+            <h3 id="diet_heading">Diet Recommendations</h3>
+            <ul>
+                {% for item in recommendations.diet %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        
+        {% if recommendations.natural_remedies %}
+        <div class="recommendation-card natural-remedies">
+            <h3 id="remedy_heading">🌿 Natural Remedies</h3>
+            <ul class="recommendation-list">
+                {% for remedy in recommendations.natural_remedies %}
+                <li>{{ remedy }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        
+        <!-- Similar blocks for exercise and medications -->
+    </div>
+
+    <div class="symptom-checker card">
+        <h2 id="symptom_checker">Symptom Checker</h2>
+        <form method="POST">
+            <label id="search_label" for="symptoms">Enter your symptoms</label><br><br>
+            <input type="text" name="symptoms" id="symptoms" placeholder="e.g. cough, headache">
+            <br><br>
+            <button type="submit" id="predict_button">Check Symptoms</button>
+        </form>
+        
+        {% if prediction %}
+        <div class="result-section">
+            <h3 id="analysis_result">Analysis Result:</h3>
+            <p><strong id="condition_result">Condition:</strong> {{ prediction }}</p>
+            <p><strong id="remedy_result">Recommended Remedy:</strong> {{ remedy }}</p>
+        </div>
+        {% endif %}
+    </div>
+
+    {% if common_solutions %}
+    <div class="common-problems card">
+        <h2 id="common_problems">Common Problems & Solutions</h2>
+        <div class="solutions-grid">
+            {% for problem, solution in common_solutions.items() %}
+            <div class="solution-item">
+                <h4>{{ problem }}</h4>
+                <p>{{ solution }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Language JS -->
+<script src="{{ url_for('static', filename='lang.js') }}"></script>
+{% endblock %}

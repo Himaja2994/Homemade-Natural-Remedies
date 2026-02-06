@@ -1,0 +1,16 @@
+{
+  "title": "Welcome",
+  "dashboard_intro": "Your Personal Health Dashboard",
+  "health_profile": "Your Health Profile",
+  "condition_label": "Condition:",
+  "details_label": "Details:",
+  "diet_heading": "Diet Recommendations",
+  "remedy_heading": "🌿 Natural Remedies",
+  "symptom_checker": "Symptom Checker",
+  "search_label": "Enter your symptoms",
+  "predict_button": "Check Symptoms",
+  "analysis_result": "Analysis Result:",
+  "condition_result": "Condition:",
+  "remedy_result": "Recommended Remedy:",
+  "common_problems": "Common Problems & Solutions"
+}
